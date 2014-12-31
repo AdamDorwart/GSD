@@ -1,5 +1,6 @@
 package com.epistemik.gsd;
 
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -50,7 +51,9 @@ public class InboxActivity extends ActionBarActivity {
                 .create();
 
         ActionBar bar = getSupportActionBar();
-        bar.setTitle(R.string.inboxActivityTitle);
+        Resources res = getResources();
+        String titleText = String.format(res.getString(R.string.inboxActivityTitle), inboxItems.size());
+        bar.setTitle(titleText);
     }
 
 

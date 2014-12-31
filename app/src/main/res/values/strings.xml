@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">GSD</string>
-    <string name="inboxActivityTitle">Inbox</string>
+    <string name="inboxActivityTitle">Inbox (%d)</string>
     <string name="action_settings">Settings</string>
 
 </resources>
