@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">GSD</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="inboxActivityTitle">Inbox</string>
     <string name="action_settings">Settings</string>
 
 </resources>

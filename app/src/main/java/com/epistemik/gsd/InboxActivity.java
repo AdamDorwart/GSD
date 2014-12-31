@@ -1,9 +1,12 @@
 package com.epistemik.gsd;
 
+import android.graphics.Color;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -37,6 +40,17 @@ public class InboxActivity extends ActionBarActivity {
         }
         mAdapter = new InboxListAdapter(inboxItems);
         mRecyclerView.setAdapter(mAdapter);
+
+        // Create Add Inbox Item button
+        FloatingActionButton fabButton = new FloatingActionButton.Builder(this)
+                .withDrawable(getResources().getDrawable(R.drawable.ic_action_add))
+                .withButtonColor(Color.parseColor("#E53935"))
+                .withGravity(Gravity.BOTTOM | Gravity.RIGHT)
+                .withMargins(0, 0, 16, 16)
+                .create();
+
+        ActionBar bar = getSupportActionBar();
+        bar.setTitle(R.string.inboxActivityTitle);
     }
 
 
