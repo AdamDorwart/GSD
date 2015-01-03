@@ -1,13 +1,14 @@
-package com.epistemik.gsd;
+package com.epistemik.gsd.views.adapters;
 
-import android.provider.Telephony;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.epistemik.gsd.models.InboxItemModel;
+import com.epistemik.gsd.R;
+import com.epistemik.gsd.models.InboxModel;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
  */
 public class InboxListAdapter extends RecyclerView.Adapter<InboxListAdapter.ViewHolder> {
 
-    private List<InboxItemModel> items;
+    private InboxModel items;
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView mItemTitle;
@@ -34,7 +35,7 @@ public class InboxListAdapter extends RecyclerView.Adapter<InboxListAdapter.View
         }
     }
 
-    public InboxListAdapter(List<InboxItemModel> modelData) {
+    public InboxListAdapter(InboxModel modelData) {
         if (modelData == null) {
             throw new IllegalArgumentException("Inbox item data shouldn't be null");
         }
@@ -51,13 +52,13 @@ public class InboxListAdapter extends RecyclerView.Adapter<InboxListAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        InboxItemModel inboxItem = items.get(position);
+        InboxItemModel inboxItem = items.inboxItems.get(position);
         holder.mItemTitle.setText(inboxItem.title);
         holder.mItemSubtitle.setText(inboxItem.subtitle);
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return items.inboxItems.size();
     }
 }

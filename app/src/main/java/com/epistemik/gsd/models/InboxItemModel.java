@@ -1,4 +1,4 @@
-package com.epistemik.gsd;
+package com.epistemik.gsd.models;
 
 /**
  * Created by adam on 12/30/14.

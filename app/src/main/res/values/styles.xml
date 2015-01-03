@@ -2,7 +2,11 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+
     </style>
+
+    <color name="primary">#E53935</color>
+    <color name="primary_pressed">#fff43835</color>
+    <color name="ripple">#ffffffff</color>
 
 </resources>
