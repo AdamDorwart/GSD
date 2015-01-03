@@ -133,7 +133,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     }
 
     public void newImpulse(View view) {
-        Intent intent = new Intent(this, NewImpulseActivity.class);
+        Intent intent = new Intent(this, ImpulseActivity.class);
+        intent.putExtra(ImpulseActivity.STATE_KEY, ImpulseActivity.STATE_NEW);
         startActivity(intent);
     }
 

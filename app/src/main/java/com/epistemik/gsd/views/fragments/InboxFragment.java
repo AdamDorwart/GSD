@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 
 import com.epistemik.gsd.R;
 import com.epistemik.gsd.models.InboxModel;
-import com.epistemik.gsd.views.NewImpulseActivity;
+import com.epistemik.gsd.views.ImpulseActivity;
 import com.epistemik.gsd.views.adapters.InboxListAdapter;
 import com.melnykov.fab.FloatingActionButton;
 

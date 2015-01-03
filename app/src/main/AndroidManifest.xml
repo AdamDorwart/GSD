@@ -17,8 +17,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".views.NewImpulseActivity"
-            android:label="@string/title_activity_new_impulse"
+            android:name=".views.ImpulseActivity"
+            android:label="@string/title_impulse"
             android:parentActivityName=".views.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

@@ -1,5 +1,6 @@
 package com.epistemik.gsd.views.adapters;
 
+import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,16 @@ import java.util.List;
 public class InboxListAdapter extends RecyclerView.Adapter<InboxListAdapter.ViewHolder> {
 
     private InboxModel items;
+    private RecyclerView mRecyclerView;
+
+    private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            int itemPosition = mRecyclerView.getChildPosition(v);
+            InboxItemModel inboxItem = items.inboxItems.get(itemPosition);
+            // Start View Impulse Activity
+        }
+    };
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView mItemTitle;
@@ -35,17 +46,19 @@ public class InboxListAdapter extends RecyclerView.Adapter<InboxListAdapter.View
         }
     }
 
-    public InboxListAdapter(InboxModel modelData) {
+    public InboxListAdapter(InboxModel modelData, RecyclerView recyclerView) {
         if (modelData == null) {
             throw new IllegalArgumentException("Inbox item data shouldn't be null");
         }
         this.items = modelData;
+        mRecyclerView = recyclerView;
     }
 
     @Override
     public InboxListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                                .inflate(R.layout.inbox_item, parent, false);
+        v.setOnClickListener(mOnClickListener);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
