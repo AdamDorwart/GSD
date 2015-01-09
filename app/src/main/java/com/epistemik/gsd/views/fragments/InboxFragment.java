@@ -94,7 +94,7 @@ public class InboxFragment extends Fragment {
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mLayoutManager.scrollToPosition(0);
 
-        mAdapter = new InboxListAdapter(mInboxModel);
+        mAdapter = new InboxListAdapter(mInboxModel, mRecyclerView, this);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());

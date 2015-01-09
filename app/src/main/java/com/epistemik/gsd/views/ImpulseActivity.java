@@ -14,6 +14,9 @@ public class ImpulseActivity extends ActionBarActivity {
     public final static int STATE_NEW = 0;
     public final static int STATE_EDIT = 1;
     public final static int STATE_VIEW = 2;
+    public final static String ITEM_KEY = "com.epistemik.gsd.impulse.item";
+
+    private int mItemPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +29,12 @@ public class ImpulseActivity extends ActionBarActivity {
                 break;
             case STATE_EDIT:
                 setContentView(R.layout.activity_edit_impulse);
+                mItemPosition = getIntent().getIntExtra(ITEM_KEY, 0);
                 // Set text
                 break;
             case STATE_VIEW:
                 setContentView(R.layout.activity_view_impulse);
+                mItemPosition = getIntent().getIntExtra(ITEM_KEY, 0);
                 // Set text
                 break;
         }
@@ -64,13 +69,17 @@ public class ImpulseActivity extends ActionBarActivity {
                 NavUtils.navigateUpFromSameTask(this);
                 return true;
             case R.id.action_done:
+                // Save item
                 NavUtils.navigateUpFromSameTask(this);
                 return true;
             case R.id.action_edit:
-                // Switch state
-                invalidateOptionsMenu();
+                Intent intent = new Intent(this, ImpulseActivity.class);
+                intent.putExtra(ImpulseActivity.STATE_KEY, ImpulseActivity.STATE_EDIT);
+                intent.putExtra(ImpulseActivity.ITEM_KEY, mItemPosition);
+                startActivity(intent);
                 return true;
             case R.id.action_delete:
+                // Delete item
                 NavUtils.navigateUpFromSameTask(this);
                 return true;
         }
