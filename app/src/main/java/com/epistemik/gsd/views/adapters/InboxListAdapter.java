@@ -68,13 +68,13 @@ public class InboxListAdapter extends RecyclerView.Adapter<InboxListAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        InboxItemModel inboxItem = mItems.inboxItems.get(position);
-        holder.mItemTitle.setText(inboxItem.title);
-        holder.mItemSubtitle.setText(inboxItem.subtitle);
+        InboxItemModel inboxItem = mItems.get(position);
+        holder.mItemTitle.setText(inboxItem.getTitle());
+        holder.mItemSubtitle.setText(inboxItem.getSubtitle());
     }
 
     @Override
     public int getItemCount() {
-        return mItems.inboxItems.size();
+        return mItems.size();
     }
 }

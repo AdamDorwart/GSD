@@ -49,15 +49,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Create fake data
-        InboxModel inboxModel = new InboxModel();
-        inboxModel.inboxItems = new ArrayList<InboxItemModel>();
-        for (int i = 0; i < 50; i++) {
-            InboxItemModel item = new InboxItemModel();
-            item.title = "Item " + i;
-            item.subtitle = "This is item number " + i;
-            inboxModel.inboxItems.add(item);
-        }
+        InboxModel inboxModel = new InboxModel(getApplicationContext());
 
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();

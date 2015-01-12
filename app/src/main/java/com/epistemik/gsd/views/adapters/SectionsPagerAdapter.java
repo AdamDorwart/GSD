@@ -51,7 +51,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Resources res = mContext.getResources();
         switch (position) {
             case 0:
-                return String.format(res.getString(R.string.inbox_tab_title), mInboxModel.inboxItems.size());
+                return String.format(res.getString(R.string.inbox_tab_title), mInboxModel.size());
             case 1:
                 return res.getString(R.string.project_tab_title).toUpperCase(l);
         }

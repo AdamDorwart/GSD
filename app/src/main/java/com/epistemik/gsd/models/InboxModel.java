@@ -26,12 +26,17 @@ public class InboxModel {
         return mInboxItems.get(position);
     }
 
-    public boolean update(int position, InboxItemModel item) {
-
+    public void update(InboxItemModel item) {
+        mInboxItems.set(item.getPosition(), item);
+        mDataSource.updateInboxItem(item);
     }
 
-    public boolean create(InboxItemModel item) {
+    public void create(InboxItemModel item) {
         mInboxItems.add(item);
         mDataSource.createInboxItem(item);
+    }
+
+    public int size() {
+        return mInboxItems.size();
     }
 }

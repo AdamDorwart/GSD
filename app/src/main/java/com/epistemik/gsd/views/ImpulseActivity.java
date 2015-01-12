@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.epistemik.gsd.R;
+import com.epistemik.gsd.models.InboxItemModel;
+import com.epistemik.gsd.models.InboxModel;
 
 public class ImpulseActivity extends ActionBarActivity {
     public final static String STATE_KEY = "com.epistemik.gsd.impulse.state";
@@ -70,6 +72,12 @@ public class ImpulseActivity extends ActionBarActivity {
                 return true;
             case R.id.action_done:
                 // Save item
+                InboxModel mInboxModel = new InboxModel(getApplicationContext());
+                InboxItemModel newItem = new InboxItemModel();
+                newItem.setTitle("New Item");
+                newItem.setDetail("This is the new item detail");
+                newItem.setPosition(mInboxModel.size());
+                mInboxModel.create(newItem);
                 NavUtils.navigateUpFromSameTask(this);
                 return true;
             case R.id.action_edit:
