@@ -70,7 +70,7 @@ public class InboxDataSource implements BaseColumns {
     }
 
     public void updateInboxItem(InboxItemModel item) {
-
+        
     }
 
     private InboxItemModel cursorToItem(Cursor cursor) {

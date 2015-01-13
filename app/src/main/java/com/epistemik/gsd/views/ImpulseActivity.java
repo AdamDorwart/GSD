@@ -95,17 +95,27 @@ public class ImpulseActivity extends ActionBarActivity {
                 return true;
             case R.id.action_done:
                 // Save item
-                //TODO Need to differentiate between New and Update task
-                InboxItemModel newItem = new InboxItemModel();
+                int state = getIntent().getIntExtra(STATE_KEY, 0);
 
                 EditText itemTitle = (EditText) findViewById(R.id.edit_impulse_title);
                 EditText itemDetail = (EditText) findViewById(R.id.edit_impulse_detail);
+                if (state == STATE_NEW) {
+                    InboxItemModel newItem = new InboxItemModel();
 
-                newItem.setTitle(itemTitle.getText().toString());
-                newItem.setDetail(itemDetail.getText().toString());
-                newItem.setPosition(mInboxModel.size());
+                    newItem.setTitle(itemTitle.getText().toString());
+                    newItem.setDetail(itemDetail.getText().toString());
+                    newItem.setPosition(mInboxModel.size());
 
-                mInboxModel.create(newItem);
+                    mInboxModel.create(newItem);
+                } else if (state == STATE_EDIT) {
+                    InboxItemModel editItem = mInboxModel.get(mItemPosition);
+
+                    editItem.setTitle(itemTitle.getText().toString());
+                    editItem.setDetail(itemDetail.getText().toString());
+
+                    mInboxModel.update(editItem);
+                }
+
                 NavUtils.navigateUpFromSameTask(this);
                 return true;
             case R.id.action_edit:
