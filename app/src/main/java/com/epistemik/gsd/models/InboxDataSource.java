@@ -45,7 +45,7 @@ public class InboxDataSource implements BaseColumns {
     }
 
     public void deleteInboxItem(InboxItemModel item) {
-
+        mDb.delete(TABLE_NAME, COLUMN_POS_ID + " = " + item.getPosition(), null);
     }
 
     public InboxItemModel getInboxItem(int position) {
@@ -70,7 +70,11 @@ public class InboxDataSource implements BaseColumns {
     }
 
     public void updateInboxItem(InboxItemModel item) {
-        
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_POS_ID, item.getPosition());
+        values.put(COLUMN_TITLE, item.getTitle());
+        values.put(COLUMN_DETAIL, item.getDetail());
+        mDb.update(TABLE_NAME, values, COLUMN_POS_ID + " = " + item.getPosition(), null);
     }
 
     private InboxItemModel cursorToItem(Cursor cursor) {

@@ -31,6 +31,10 @@ public class InboxModel {
         mDataSource.updateInboxItem(item);
     }
 
+    public void delete(InboxItemModel item) {
+        //Delete item and update position of all items after
+    }
+
     public void create(InboxItemModel item) {
         mInboxItems.add(item);
         mDataSource.createInboxItem(item);
