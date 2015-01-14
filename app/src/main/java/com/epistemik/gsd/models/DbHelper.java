@@ -8,12 +8,12 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by adam on 1/8/15.
  */
 public class DbHelper extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "GSD.db";
 
     public static final String SQL_CREATE_ENTRIES =
         "CREATE TABLE " + InboxDataSource.TABLE_NAME + "(" +
-        InboxDataSource.COLUMN_POS_ID + " INTEGER PRIMARY KEY, " +
+        InboxDataSource._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
         InboxDataSource.COLUMN_TITLE + " TEXT NOT NULL, " +
         InboxDataSource.COLUMN_DETAIL + " TEXT);";
     public static final String SQL_DELETE_ENTRIES =

@@ -16,10 +16,9 @@ import java.util.List;
  */
 public class InboxDataSource implements BaseColumns {
     public static final String TABLE_NAME = "inbox";
-    public static final String COLUMN_POS_ID = "position";
     public static final String COLUMN_TITLE = "title";
     public static final String COLUMN_DETAIL = "detail";
-    private String[] allColumns = { COLUMN_POS_ID, COLUMN_TITLE, COLUMN_DETAIL};
+    private String[] allColumns = { _ID ,COLUMN_TITLE, COLUMN_DETAIL};
 
     private SQLiteDatabase mDb;
     private DbHelper mDbHelper;
@@ -38,31 +37,24 @@ public class InboxDataSource implements BaseColumns {
 
     public void createInboxItem(InboxItemModel item) {
         ContentValues values = new ContentValues();
-        values.put(COLUMN_POS_ID, item.getPosition());
         values.put(COLUMN_TITLE, item.getTitle());
         values.put(COLUMN_DETAIL, item.getDetail());
         mDb.insert(TABLE_NAME, null, values);
     }
 
     public void deleteInboxItem(InboxItemModel item) {
-        mDb.delete(TABLE_NAME, COLUMN_POS_ID + " = " + item.getPosition(), null);
-    }
-
-    public InboxItemModel getInboxItem(int position) {
-        Cursor cursor = mDb.query(TABLE_NAME, allColumns, COLUMN_POS_ID + " = " + position, null, null, null, null);
-        cursor.moveToFirst();
-        InboxItemModel item = cursorToItem(cursor);
-        cursor.close();
-        return item;
-
+        mDb.delete(TABLE_NAME, _ID + " = " + item.getID(), null);
     }
 
     public List<InboxItemModel> getAllInboxItems() {
         List<InboxItemModel> items = new ArrayList<InboxItemModel>();
+        InboxItemModel newItem;
         Cursor cursor = mDb.query(TABLE_NAME, allColumns, null, null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            items.add( cursorToItem(cursor));
+            newItem = cursorToItem(cursor);
+            newItem.setPosition(items.size());
+            items.add(newItem);
             cursor.moveToNext();
         }
         cursor.close();
@@ -71,17 +63,16 @@ public class InboxDataSource implements BaseColumns {
 
     public void updateInboxItem(InboxItemModel item) {
         ContentValues values = new ContentValues();
-        values.put(COLUMN_POS_ID, item.getPosition());
         values.put(COLUMN_TITLE, item.getTitle());
         values.put(COLUMN_DETAIL, item.getDetail());
-        mDb.update(TABLE_NAME, values, COLUMN_POS_ID + " = " + item.getPosition(), null);
+        mDb.update(TABLE_NAME, values, _ID + " = " + item.getID(), null);
     }
 
     private InboxItemModel cursorToItem(Cursor cursor) {
         InboxItemModel item = new InboxItemModel();
         item.setTitle(cursor.getString(cursor.getColumnIndex(COLUMN_TITLE)));
         item.setDetail(cursor.getString(cursor.getColumnIndex(COLUMN_DETAIL)));
-        item.setPosition(cursor.getInt(cursor.getColumnIndex(COLUMN_POS_ID)));
+        item.setID(cursor.getLong(cursor.getColumnIndex(_ID)));
         return item;
     }
 }

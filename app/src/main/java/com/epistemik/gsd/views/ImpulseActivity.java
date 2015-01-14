@@ -125,7 +125,8 @@ public class ImpulseActivity extends ActionBarActivity {
                 startActivity(intent);
                 return true;
             case R.id.action_delete:
-                mInboxModel.delete
+                InboxItemModel deleteItem = mInboxModel.get(mItemPosition);
+                mInboxModel.delete(deleteItem);
                 NavUtils.navigateUpFromSameTask(this);
                 return true;
         }

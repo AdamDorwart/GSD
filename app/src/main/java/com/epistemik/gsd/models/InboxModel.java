@@ -32,7 +32,11 @@ public class InboxModel {
     }
 
     public void delete(InboxItemModel item) {
-        //Delete item and update position of all items after
+        mInboxItems.remove(item);
+        for (int i = item.getPosition(); i < mInboxItems.size(); i++) {
+            mInboxItems.get(i).setPosition(i);
+        }
+        mDataSource.deleteInboxItem(item);
     }
 
     public void create(InboxItemModel item) {
